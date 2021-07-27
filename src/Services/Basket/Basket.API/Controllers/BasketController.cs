@@ -30,7 +30,7 @@ namespace Basket.API.Controllers
             return Ok(basket ?? new ShoppingCart(username));
         }
 
-        [HttpPut]
+        [HttpPost]
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody]ShoppingCart basket)
         {

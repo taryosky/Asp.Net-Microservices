@@ -51,7 +51,7 @@ namespace Basket.API
             //MassTransif-RabbitMQ congiguration
             services.AddMassTransit(config => {
                 config.UsingRabbitMq((contex, conf) => {
-                    conf.Host(Configuration.GetValue<string>(Configuration["EventBusSettings:HostAddress"]));
+                    conf.Host(Configuration["EventBusSettings:HostAddress"]);
                 });
             });
 

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
+using ShoppingCartAggregator.Services;
+
 namespace ShoppingCartAggregator
 {
     public class Startup
@@ -32,6 +34,12 @@ namespace ShoppingCartAggregator
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShoppingCartAggregator", Version = "v1" });
             });
+
+            services.AddHttpClient<ICatalogService, CatalogService>(c => c.BaseAddress = new Uri(Configuration["ApiSettings:CatalogUrl"]));
+            services.AddHttpClient<IBasketService, BasketService>(c => c.BaseAddress = new Uri(Configuration["ApiSettings:BasketUrl"]));
+            services.AddHttpClient<IOrderService, OrderingService>(c => c.BaseAddress = new Uri(Configuration["ApiSettings:OrderingUrl"]));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
